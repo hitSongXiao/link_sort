@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <queue>
 #include <algorithm>
-#define MAX 10000
+#define MAX 50000
 #define NUM 200
 #define N 50000
 int *nums;
@@ -43,7 +43,7 @@ int main()
         read();
         num=new int *[10];
         for(int j=0;j<10;j++)
-            num[j]=new int[Max];
+            num[j]=new int[Count];
         start1=clock();
         count_sort(num1,sorted_1);
         end1=clock();
@@ -87,11 +87,8 @@ int main()
             cout<<"basic sort"<<endl;
             cout<<"running time:"<<end3-start3<<"ms"<<endl;
         }
-        for(int j=0;j<10;j++)
-            delete(num[j]);
-        delete(num);
+        Write();
     }
-    Write();
 }
 void write()
 {
@@ -105,8 +102,8 @@ void write()
     srand(time(NULL));
     for(int i=0;i<N;i++)
     {
-        out<<i<<" "<<rand()%(MAX/NUM)+(i/(MAX/NUM))*(MAX/NUM)<<endl;
-        //out<<i<<" "<<rand()%MAX<<endl;
+        //out<<i<<" "<<rand()%(MAX/NUM)+(i/(MAX/NUM))*(MAX/NUM)<<endl;
+        out<<i<<" "<<rand()%MAX<<endl;
     }
     out.close();
 }
@@ -184,6 +181,7 @@ void count_sort(int A[],int B[])
         B[CountArr[A[i]]-1]=A[i];
         CountArr[A[i]]--;
     }
+    free(CountArr);
 }
 void Bucket(int A[],int B[])
 {
@@ -205,6 +203,7 @@ void Bucket(int A[],int B[])
             CountArr[i]--;
         }
     }
+    free(CountArr);
 }
 
 void sort_3(int A[],int m)
